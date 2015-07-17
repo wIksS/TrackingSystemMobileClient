@@ -1,5 +1,6 @@
 (function (global) {
     var app = global.app = global.app || {};
+    baseUrl = 'http://localhost:63810';
 	
     app.makeUrlAbsolute = function (url) {
             var anchorEl = document.createElement("a");

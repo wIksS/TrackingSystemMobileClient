@@ -1,38 +1,33 @@
 (function (global) {
-    var LoginViewModel,
+    var RegisterViewModel,
         app = global.app = global.app || {};
 
-    LoginViewModel = kendo.data.ObservableObject.extend({
+    RegisterViewModel = kendo.data.ObservableObject.extend({
         isLoggedIn: false,
         username: "",
         password: "",
+        confirmPassword: "",
 
-        onLogin: function () {
+        onRegister: function () {
             var that = this,
                 username = that.get("username").trim(),
+                confirmPassword = that.get("password").trim(),
                 password = that.get("password").trim();
 
-            if (username === "" || password === "") {
-                navigator.notification.alert("Both fields are required!",
+            if (username === "" || password === ""  || confirmPassword === "") {
+                navigator.notification.alert("All fields are required!",
                     function () { }, "Login failed", 'OK');
 
                 return;
             }
             
-            auth.login({"username" : username,"password" : password})
+            auth.register({"Email" : username,"Password" : password,"ConfirmPassword":password})
             	.then(function(data){
                 	navigator.notification.alert(data);
-                    that.set("isLoggedIn", true);
             	},function(error){
                 	errorHandler.handle(error);
-            	})                     
-        },
+            	})
 
-        onLogout: function () {
-            var that = this;
-
-            that.clearForm();
-            that.set("isLoggedIn", false);
         },
 
         clearForm: function () {
@@ -40,6 +35,7 @@
 
             that.set("username", "");
             that.set("password", "");
+            that.set("confirmPassword", "");            
         },
 
         checkEnter: function (e) {
@@ -47,12 +43,12 @@
 
             if (e.keyCode == 13) {
                 $(e.target).blur();
-                that.onLogin();
+                that.onRegister();
             }
         }
     });
 
-    app.loginService = {
-        viewModel: new LoginViewModel()
+    app.registerService = {
+        viewModel: new RegisterViewModel()
     };
 })(window);
