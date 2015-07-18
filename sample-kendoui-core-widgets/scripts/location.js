@@ -18,9 +18,10 @@
 
             that._isLoading = true;
             that.toggleLoading();
-
+			
             navigator.geolocation.getCurrentPosition(
                 function (position) {
+                    console.log(position);
                     position = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                     map.panTo(position);
                     that._putMarker(position);

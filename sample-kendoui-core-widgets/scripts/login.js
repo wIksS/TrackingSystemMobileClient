@@ -21,7 +21,8 @@
             
             auth.login({"username" : username,"password" : password})
             	.then(function(data){
-                	navigator.notification.alert(data);
+                	//console.log(data);
+                	identity.loginUser(data);
                     that.set("isLoggedIn", true);
             	},function(error){
                 	errorHandler.handle(error);
@@ -32,6 +33,7 @@
             var that = this;
 
             that.clearForm();
+            identity.logoutUser();
             that.set("isLoggedIn", false);
         },
 
