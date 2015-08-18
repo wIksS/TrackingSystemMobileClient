@@ -1,0 +1,18 @@
+/* IMAGES */
+.logo-image {
+    background-image: url(../styles/images/logo-w.png);
+    background-repeat: no-repeat;
+    width: 319px;
+    height: 60px;
+    display: block;
+    margin: 0px auto;
+}
+
+
+/* RETINA DISPLAY STYLES */
+@media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
+    .logo-image {
+        background-image: url(../styles/images/logo2x-w.png);
+        background-size: 100%;
+    }
+}

@@ -1,42 +1,71 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+<html ng-app="TrackingSystemApp">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+    <link href="styles/main.css" rel="stylesheet" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />    
+    <link href="styles/logoimages.css" rel="stylesheet" />
 
-    http://www.apache.org/licenses/LICENSE-2.0
+    <script src="cordova.js"></script>
+    <script src="scripts/angular/angular.js"></script>   
+    <script src="scripts/angular/angular-route.js"></script>        
+    <script src="kendo/js/jquery.min.js"></script>
+    <script src="kendo/js/kendo.mobile.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+    <script src="scripts/bootstrap.js"></script>       
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World!</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+    <script src="js/app.js"></script>    
+    
+    <script src="js/controllers/LoginCtrl.js"></script>    
+    <script src="js/controllers/RegisterCtrl.js"></script> 
+    
+    <script src="js/services/httpRequester.js"></script>    
+    <script src="js/services/objectToQueryString.js"></script>    
+    <script src="js/services/errorHandler.js"></script>    
+    <script src="js/services/user/studentsService.js"></script>    
+    <script src="js/services/location/locationService.js"></script>    
+    <script src="js/services/account/auth.js"></script>    
+    <script src="js/services/account/identity.js"></script>     
+    
+    
+    <script src="js/services/httpRequester.js"></script>
+    <script src="js/services/objectToQueryString.js"></script>
+    <script src="js/services/errorHandler.js"></script>    
+    <script src="js/services/account/auth.js"></script> 
+    <script src="js/services/account/identity.js"></script> 
+    <script src="js/services/location/locationService.js"></script> 
+    <script src="js/services/user/studentsService.js"></script> 
+</head>
+<body>
+ <nav id="menu" class="navbar navbar-default navbar-fixed-top on">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/home">QRInfoSystem</a>
             </div>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div ng-include="'user/login'"></div>
+                <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="pesho" class="page-scroll">Home</a></li>
+                        <li><a data-scroll href="#teachers" class="page-scroll">Teachers</a></li>
+                        <li><a data-scroll href="#Admin" class="page-scroll">Team</a></li>
+                        <li><a data-scroll href="#services" class="page-scroll">Services</a></li>
+                        <li><a data-scroll href="#tf-contact" class="page-scroll">Contact</a></li>
+                    </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    
+    <div class="container" ng-view>
+    </div>
+</body>
 </html>
