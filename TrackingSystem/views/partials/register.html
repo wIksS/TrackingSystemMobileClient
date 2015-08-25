@@ -24,6 +24,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="isTeacher" class="col-lg-2 control-label">Teacher </label>
+                            <div class="col-lg-10">
+                                <input type="checkbox" ng-model="user.isTeacher" class="form-control" id="isTeacher" value='true'>
+                            </div>
+                        </div>                        
+                        <div class="form-group">
                             <div class="col-lg-10 col-lg-offset-2">
                                 <button type="submit" ng-click="register(user)" class="btn btn-primary">Register</button>
                                 <button type="reset" class="btn btn-default">Cancel</button>

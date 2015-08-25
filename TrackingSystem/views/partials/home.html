@@ -1,8 +1,5 @@
 <div ng-controller="LoginCtrl">    
     <ul ng-hide="isLogged" class="nav navbar-nav navbar-right">
-        <li class="active">
-            <a href="/#/teachers">Teachers</a>
-        </li>
         <li>
             <form class="navbar-form navbar-left">
                 <div class="form-group">
@@ -14,4 +11,9 @@
             </form>
         </li>
     </ul>
+    <div ng-hide='!isLogged'>
+        <button class='btn btn-primary form-control' ng-click='startExcursion()'>
+            Start excursion
+        </button>
+    </div>
 </div>

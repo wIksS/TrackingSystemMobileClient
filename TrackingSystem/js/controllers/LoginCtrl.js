@@ -2,8 +2,8 @@
  * Created by Виктор on 27.9.2014 г..
  */
 
-app.controller('LoginCtrl', ['$scope', '$rootScope','auth', 'identity', '$location','errorHandler',
-    function ($scope, $rootScope, auth, identity, $location,errorHandler) {
+app.controller('LoginCtrl', ['$scope', '$rootScope','auth', 'identity', '$location','errorHandler','locationService',
+    function ($scope, $rootScope, auth, identity, $location,errorHandler,locationService) {
     var user = identity.getUser();
     $scope.isLogged = identity.isLogged();
     $scope.isAdmin = identity.isAdmin();
@@ -22,12 +22,10 @@ app.controller('LoginCtrl', ['$scope', '$rootScope','auth', 'identity', '$locati
     });
 
     $scope.login = function(user){
-                debugger;
-
         auth.login(user)
             .then(function(data){
                 identity.loginUser(data)
-                .then(function (data) {
+                //.then(function (data) {
                     $scope.isLogged = identity.isLogged();
                     var user = identity.getUser();
                     $scope.username = user.username;
@@ -35,8 +33,9 @@ app.controller('LoginCtrl', ['$scope', '$rootScope','auth', 'identity', '$locati
                     $scope.isTeacher = identity.isInRole('Teacher');
 
                     //notifier.success('Successful login !');
-                    $location.path('/');
-                });               
+                    $location.path('/students/groups');
+                    $scope.$apply();
+                //});               
             },
             function(err){
                 errorHandler.handle(err);
@@ -53,6 +52,37 @@ app.controller('LoginCtrl', ['$scope', '$rootScope','auth', 'identity', '$locati
         $scope.user.password = '';
         currentTeacher.deleteSessionTeacher();
         notifier.success('Successful logout');
-        initLinksAnimations();
-    }
+    };
+                             
+	$scope.startExcursion = function(){
+       var interval = setInterval(function(){
+		 navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    locationService.addLocation(position)
+                    	.then(function(data){
+                        	console.log(data);
+                        	if(data.length > 0){
+                                for(var key in data){
+                                    var dist = data[key];
+                                    alert('You are ' + dist.Distance + 'meters away from ' + dist.User.UserName )
+                                }
+                            }
+                    	},function(err){
+                        	console.log(err);
+                    	});
+                    
+                },
+                function (error) {
+                    //default map coordinates
+                    navigator.notification.alert("Unable to determine current location. Cannot connect to GPS satellite.",
+                        function () { }, "Location failed", 'OK');
+                },
+                {
+                    timeout: 30000,
+                    enableHighAccuracy: true
+                }
+            );              
+       }, 3000);
+      
+  	}                            
 }]);

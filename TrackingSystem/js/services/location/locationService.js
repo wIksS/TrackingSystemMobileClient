@@ -1,4 +1,4 @@
-app.factory('locationService', ['identity','baseUrl', function (identity,baseUrl) {
+app.factory('locationService', ['identity','baseUrl','httpRequester', function (identity,baseUrl,httpRequester) {
     var url = baseUrl;
 
     return {

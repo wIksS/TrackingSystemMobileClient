@@ -16,8 +16,9 @@ app.factory('auth', ['$http','$q','baseUrl','httpRequester','objectToQueryString
         getUserRoles: function (user) {
             user = user || {};
             user['grant_type'] = 'password';
-
-            return httpRequester.get(url + '/api/account/Role',user);
+			user.identity = user.token;
+            
+            return httpRequester.getAuthorized(url + '/api/account/GetRoles',user.token);
         }
     }
 }])

@@ -12,17 +12,9 @@ var app = angular.module('TrackingSystemApp', ['ngRoute'])
                 templateUrl: 'views/partials/register.html',
                 controller: 'RegisterCtrl'
             }).        
-            when('/Content/Login', {
-                templateUrl: 'home/home',
-                controller: 'LoginCtrl'
-            }).           
-            when('/Content/register', {
-                templateUrl: 'user/register',
-                controller: 'RegisterCtrl'
-            }).
-            when('/pesho', {
-                templateUrl: '../views/partials/home.html',
-                controller: 'LoginCtrl'
-            })          
+            when('/students/groups', {
+                templateUrl: 'views/partials/students.html',
+                controller: 'StudentGroupsCtrl'
+            })        
     }])
-    .constant('baseUrl', 'http://localhost:63810/');
+    .constant('baseUrl', 'http://localhost:63810');

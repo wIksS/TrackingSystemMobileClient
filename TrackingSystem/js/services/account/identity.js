@@ -26,7 +26,7 @@ app.factory('identity', ['auth', function (auth) {
         loginUser: function (user) {
             sessionStorage.setItem('token',user.access_token);
             sessionStorage.setItem('username', user.userName);
-            return ;//setRoles();
+            //return setRoles();
         },
         getUser:getUser,
         logoutUser:function(){

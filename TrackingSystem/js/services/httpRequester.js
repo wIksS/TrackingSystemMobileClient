@@ -38,7 +38,7 @@ app.factory('httpRequester',['objectToQueryString',function(objectToQueryString)
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
         },
-        customAuthrized: function (type,url,data){
+        customAuthorized: function (type,url,data){
             return $.ajax({
                 method: type,
                 url: url,

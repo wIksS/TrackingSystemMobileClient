@@ -1,0 +1,12 @@
+<h1>
+    <ul>
+        <li ng-repeat="student in students">
+            <h1>
+                {{student.UserName}}
+            </h1>
+            <button class='btn btn-default form-control' ng-click='addStudentToGroup(student.UserName)'>
+                Add to group
+            </button>
+        </li>
+    </ul>
+</h1>
